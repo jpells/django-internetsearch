@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block title %}{% trans "Search" %} {% if term %}{% blocktrans %}{{ term }}{% endblocktrans %}{% endif %}{% endblock %}
-{% block breadcrumb %}<li>{% trans "Search" %} {% if term %}{% blocktrans %}{{ term }}{% endblocktrans %}{% endif %}</li>{% endblock %}
+{% block breadcrumb %}<li class="last">{% trans "Search" %} {% if term %}{% blocktrans %}{{ term }}{% endblocktrans %}{% endif %}</li>{% endblock %}
 {% block content %}
 {% include "internetsearch/search_form.html" %}
 <hr>
 {% if result %}
-{% trans "Number of Results" %}: <ul><li><a href="/search/{{ term }}/10/#{{ results_number }}">10</a></li> <li><a href="/search/{{ term }}/20/#{{ results_number }}">20</a></li> <li><a href="/search/{{ term }}/30/#{{ results_number }}">30</a></li> <li><a href="/search/{{ term }}/40/#{{ results_number }}">40</a></li> <li><a href="/search/{{ term }}/50/#{{ results_number }}">50</a></li> <li><a href="/search/{{ term }}/60/#{{ results_number }}">60</a></li> <li><a href="/search/{{ term }}/70/#{{ results_number }}">70</a></li> <li><a href="/search/{{ term }}/80/#{{ results_number }}">80</a></li> <li><a href="/search/{{ term }}/90/#{{ results_number }}">90</a></li> <li><a href="/search/{{ term }}/100/#{{ results_number }}">100</a></li></ul>
+{% trans "Number of Results" %}: <ul><li><a href="{% url internetsearch_search_term_results term,5 %}">5</a></li> <li><a href="{% url internetsearch_search_term_results term,10 %}">10</a></li> <li><a href="{% url internetsearch_search_term_results term,15 %}">15</a></li> <li><a href="{% url internetsearch_search_term_results term,20 %}">20</a></li> <li><a href="{% url internetsearch_search_term_results term,25 %}">25</a></li> <li><a href="/search/{{ term }}/60/#{{ results_number }}">60</a></li> <li><a href="/search/{{ term }}/70/#{{ results_number }}">70</a></li> <li><a href="/search/{{ term }}/80/#{{ results_number }}">80</a></li> <li><a href="/search/{{ term }}/90/#{{ results_number }}">90</a></li> <li><a href="/search/{{ term }}/100/#{{ results_number }}">100</a></li></ul>
 {% for res in result %}
-	<a name="{{ forloop.counter }}" href="{{ res.1 }}" target="_blank"><b>{% blocktrans %}{{ res.0 }}{% endblocktrans %}</b></a><br>
+	<a href="{{ res.1 }}" target="_blank"><b>{% blocktrans %}{{ res.0 }}{% endblocktrans %}</b></a><br>
 	{% blocktrans %}{{ res.2 }}{% endblocktrans %}<br><br>
 {% endfor %}
-{% trans "Number of Results" %}: <ul><li><a href="/search/{{ term }}/10/#{{ results_number }}">10</a></li> <li><a href="/search/{{ term }}/20/#{{ results_number }}">20</a></li> <li><a href="/search/{{ term }}/30/#{{ results_number }}">30</a></li> <li><a href="/search/{{ term }}/40/#{{ results_number }}">40</a></li> <li><a href="/search/{{ term }}/50/#{{ results_number }}">50</a></li> <li><a href="/search/{{ term }}/60/#{{ results_number }}">60</a></li> <li><a href="/search/{{ term }}/70/#{{ results_number }}">70</a></li> <li><a href="/search/{{ term }}/80/#{{ results_number }}">80</a></li> <li><a href="/search/{{ term }}/90/#{{ results_number }}">90</a></li> <li><a href="/search/{{ term }}/100/#{{ results_number }}">100</a></li></ul>
+{% trans "Number of Results" %}: <ul><li><a href="{% url internetsearch_search_term_results term,5 %}">5</a></li> <li><a href="{% url internetsearch_search_term_results term,10 %}">10</a></li> <li><a href="{% url internetsearch_search_term_results term,15 %}">15</a></li> <li><a href="{% url internetsearch_search_term_results term,20 %}">20</a></li> <li><a href="{% url internetsearch_search_term_results term,25 %}">25</a></li> <li><a href="/search/{{ term }}/60/#{{ results_number }}">60</a></li> <li><a href="/search/{{ term }}/70/#{{ results_number }}">70</a></li> <li><a href="/search/{{ term }}/80/#{{ results_number }}">80</a></li> <li><a href="/search/{{ term }}/90/#{{ results_number }}">90</a></li> <li><a href="/search/{{ term }}/100/#{{ results_number }}">100</a></li></ul>
 {% endif %}
 {% endblock %}
